@@ -35,12 +35,13 @@ public class ClientResource {
 	@GetMapping(value="/custom")
 	public ResponseEntity<List<Client>> findByAll(
 			@RequestParam(value="id", required=false) Long id,
-			@RequestParam(value="name", required=false) String name,
+			@RequestParam(value="nome", required=false) String name,
 			@RequestParam(value="cpf", required=false) String cpf,
 			@RequestParam(value="rg", required=false) String rg, 
 			@RequestParam(value="email", required=false) String email,
-			@RequestParam(value="limite", required=true) String limite)
+			@RequestParam(value="limite", required=false) String limite)
 	{
+		
 		List<Client> list = service.findCustom(id, name, cpf, rg, email,limite);
 		return ResponseEntity.ok().body(list);
 				

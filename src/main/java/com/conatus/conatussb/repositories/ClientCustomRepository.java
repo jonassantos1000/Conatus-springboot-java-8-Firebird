@@ -22,57 +22,57 @@ public class ClientCustomRepository {
 	private final EntityManager eq;
 	
 	
-	public List<Client> find(Long id, String name, String cpf, String rg, String email, String limite){
+	public List<Client> find(Long id, String nome, String cpf, String rg, String email, String limite){
 		String query = "SELECT first "+limite+" * FROM CLIENTES ";
     	String condicao="where ";
     	
         	
     	if(id!= null) {
-    		query+=condicao+"CODIGO = :id";
+    		query+=condicao+"CODIGO LIKE (:id)";
     		condicao="and ";
     	}
     	
-    	if(name!= null) {
-    		query+=condicao+"NOME = :name";
+    	if(nome!= null) {
+    		query+=condicao+"NOME LIKE (:nome)";	
     		condicao="and ";
     	}
     	
     	if(cpf!= null) {
-    		query+=condicao+"CPF = :cpf";
+    		query+=condicao+"CPF LIKE(:cpf)";
     		condicao="and ";
     	}
     	
     	if(rg!= null) {
-    		query+=condicao+"RG = :rg";
+    		query+=condicao+"RG LIKE(:rg)";
     		condicao="and ";
     	}
     	
     	if(email!= null) {
-    		query+=condicao+"EMAIL = :email";
+    		query+=condicao+"EMAIL LIKE (:email)";
     		condicao="and ";
     	}
     	
     	Query q = eq.createNativeQuery(query, Client.class);
     	
     	if(id!= null) {
-    		q.setParameter("id",id);
+    		q.setParameter("id","%"+id+"%");
     	}
     	
-    	if(name!= null) {
-    		q.setParameter("name", name);
+    	if(nome!= null) {
+    		q.setParameter("nome", "%"+nome.toUpperCase()+"%");
     	}
     	
     	if(cpf!= null) {
-    		q.setParameter("cpf", cpf);
+    		q.setParameter("cpf", "%"+cpf+"%");
     	}
     	
     	if(rg!= null) {
-    		q.setParameter("rg", rg);
+    		q.setParameter("rg", "%"+rg+"%");
     	}
     	
     	if(email!= null) {
-    		q.setParameter("email", email);
-    	}
+    		q.setParameter("email", "%"+email.toUpperCase()+"%");
+    	}  	
     	
     	return q.getResultList();
 	}
