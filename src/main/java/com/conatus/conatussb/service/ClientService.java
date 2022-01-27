@@ -32,4 +32,8 @@ public class ClientService {
 		return customRepository.find(id, name, cpf, rg, email,limite);
 	}
 	
+	public Client insert(Client obj) {
+		return repository.save(obj);
+	}
+	
 }
