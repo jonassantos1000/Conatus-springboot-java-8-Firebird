@@ -1,10 +1,17 @@
 package com.conatus.conatussb.entities;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+
 
 @MappedSuperclass
 public abstract class Pessoa implements Serializable {
@@ -46,7 +53,7 @@ public abstract class Pessoa implements Serializable {
 	String numero;
 	
 	@Column(name = ("CEP"))
-	String CEP;
+	String cep;
 	
 	@Column(name = ("COMPLEMENTO"))
 	String complemento;
@@ -74,7 +81,7 @@ public abstract class Pessoa implements Serializable {
 		setRG(RG);
 		setCelular(celular);
 		setEmail(email);
-		setData(data);
+		setData_cadastro(data);
 		setEndereco(endereco);
 		setBairro(bairro);
 		setNumero(numero);
@@ -84,7 +91,8 @@ public abstract class Pessoa implements Serializable {
 		setObservacao(observacao);
 		setCEP(CEP);
 		setData_alteracao(data_alteracao);
-	}
+		}
+	
 	
 	public Long getCodigo() {
 		return codigo;
@@ -104,10 +112,12 @@ public abstract class Pessoa implements Serializable {
 
 	public String getData_alteracao() {
 		return data_alteracao;
+		
 	}
 
 	public void setData_alteracao(String data_alteracao) {
 		this.data_alteracao = data_alteracao;
+		
 	}
 
 	public String getEndereco() {
@@ -135,11 +145,11 @@ public abstract class Pessoa implements Serializable {
 	}
 
 	public String getCEP() {
-		return CEP;
+		return cep;
 	}
 
 	public void setCEP(String CEP) {
-		this.CEP = CEP;
+		this.cep = CEP;
 	}
 
 	public String getComplemento() {
@@ -174,12 +184,12 @@ public abstract class Pessoa implements Serializable {
 		this.observacao = observacao;
 	}
 
-	public String getData() {
+	public String getData_cadastro() {
 		return data_cadastro;
 	}
 
-	public void setData(String data) {
-		this.data_cadastro = data;
+	public void setData_cadastro(String data_cadastro) {
+		this.data_cadastro = data_cadastro;
 	}
 
 	public String getNome() {
@@ -214,6 +224,15 @@ public abstract class Pessoa implements Serializable {
 		this.email = email;
 	}
 
+	 public static java.util.Date formataData(String data) throws ParseException {
+	        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+	        sdf.setLenient(false);
+	        return sdf.parse(data);	        
+	 }
+	 
+	 public static java.sql.Date getSqlDate(java.util.Date date) {
+	        return new java.sql.Date(date.getTime());
+	 }
 
 
 	@Override

@@ -1,80 +1,81 @@
 package com.conatus.conatussb.repositories;
 
+import java.text.ParseException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
 import com.conatus.conatussb.entities.Client;
+import com.conatus.conatussb.entities.Counters;
 
 @Repository
+@Transactional
 public class ClientCustomRepository {
-	
-	
-	public ClientCustomRepository(EntityManager eq) {
+
+	public ClientCustomRepository(EntityManager em) {
 		super();
-		this.eq = eq;
+		this.em = em;
 	}
 
-	private final EntityManager eq;
-	
-	
-	public List<Client> find(Long id, String nome, String cpf, String rg, String email, String limite){
-		String query = "SELECT first "+limite+" * FROM CLIENTES ";
-    	String condicao="where ";
-    	
-        	
-    	if(id!= null) {
-    		query+=condicao+"CODIGO LIKE (:id)";
-    		condicao="and ";
-    	}
-    	
-    	if(nome!= null) {
-    		query+=condicao+"NOME LIKE (:nome)";	
-    		condicao="and ";
-    	}
-    	
-    	if(cpf!= null) {
-    		query+=condicao+"CPF LIKE(:cpf)";
-    		condicao="and ";
-    	}
-    	
-    	if(rg!= null) {
-    		query+=condicao+"RG LIKE(:rg)";
-    		condicao="and ";
-    	}
-    	
-    	if(email!= null) {
-    		query+=condicao+"EMAIL LIKE (:email)";
-    		condicao="and ";
-    	}
-    	
-    	Query q = eq.createNativeQuery(query, Client.class);
-    	
-    	if(id!= null) {
-    		q.setParameter("id","%"+id+"%");
-    	}
-    	
-    	if(nome!= null) {
-    		q.setParameter("nome", "%"+nome.toUpperCase()+"%");
-    	}
-    	
-    	if(cpf!= null) {
-    		q.setParameter("cpf", "%"+cpf+"%");
-    	}
-    	
-    	if(rg!= null) {
-    		q.setParameter("rg", "%"+rg+"%");
-    	}
-    	
-    	if(email!= null) {
-    		q.setParameter("email", "%"+email.toUpperCase()+"%");
-    	}  	
-    	
-    	return q.getResultList();
+	private final EntityManager em;
+
+	public List<Client> find(Long id, String nome, String cpf, String rg, String email, String limite) {
+		String query = "SELECT first " + limite + " * FROM CLIENTES ";
+		String condicao = "where ";
+
+		if (id != null) {
+			query += condicao + "CODIGO LIKE (:id)";
+			condicao = "and ";
+		}
+
+		if (nome != null) {
+			query += condicao + "NOME LIKE (:nome)";
+			condicao = "and ";
+		}
+
+		if (cpf != null) {
+			query += condicao + "CPF LIKE(:cpf)";
+			condicao = "and ";
+		}
+
+		if (rg != null) {
+			query += condicao + "RG LIKE(:rg)";
+			condicao = "and ";
+		}
+
+		if (email != null) {
+			query += condicao + "EMAIL LIKE (:email)";
+			condicao = "and ";
+		}
+
+		Query q = em.createNativeQuery(query, Client.class);
+
+		if (id != null) {
+			q.setParameter("id", "%" + id + "%");
+		}
+
+		if (nome != null) {
+			q.setParameter("nome", "%" + nome.toUpperCase() + "%");
+		}
+
+		if (cpf != null) {
+			q.setParameter("cpf", "%" + cpf + "%");
+		}
+
+		if (rg != null) {
+			q.setParameter("rg", "%" + rg + "%");
+		}
+
+		if (email != null) {
+			q.setParameter("email", "%" + email.toUpperCase() + "%");
+		}
+
+		return q.getResultList();
 	}
-	
-	
+
 }
