@@ -1,17 +1,15 @@
 package com.conatus.conatussb.repositories;
 
-import java.text.ParseException;
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
-
 import com.conatus.conatussb.entities.Client;
-import com.conatus.conatussb.entities.Counters;
+
 
 @Repository
 @Transactional

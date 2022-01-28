@@ -1,80 +1,72 @@
 package com.conatus.conatussb.entities;
 
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-
-
 @MappedSuperclass
 public abstract class Pessoa implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = ("CODIGO"))
 	Long codigo;
-	
+
 	@Column(name = ("NOME"))
 	String nome;
-	
+
 	@Column(name = ("CPF"))
 	String cpf;
-	
+
 	@Column(name = ("CELULAR"))
 	String celular;
-	
+
 	@Column(name = ("EMAIL"))
 	String email;
-	
+
 	@Column(name = ("DATA_CADASTRO"))
 	String data_cadastro;
-	
+
 	@Column(name = ("DATA_ALTERACAO"))
 	String data_alteracao;
-	
+
 	@Column(name = ("RG"))
 	String rg;
-	
+
 	@Column(name = ("ENDERECO"))
 	String endereco;
-	
+
 	@Column(name = ("BAIRRO"))
 	String bairro;
-	
+
 	@Column(name = ("NUMERO"))
 	String numero;
-	
+
 	@Column(name = ("CEP"))
 	String cep;
-	
+
 	@Column(name = ("COMPLEMENTO"))
 	String complemento;
-	
+
 	@Column(name = ("TELEFONE"))
 	String telefone;
-	
+
 	@Column(name = ("NOTIFICA_WHATS"))
 	String notificaEmail;
-	
+
 	@Column(name = ("OBSERVACAO"))
 	String observacao;
-	
+
 	public Pessoa() {
-		
+
 	}
-	
+
 	public Pessoa(Long codigo, String nome, String cpf, String RG, String celular, String email, String data,
 			String endereco, String bairro, String numero, String complemento, String telefone, String notificawhats,
-			String observacao, String CEP, String data_alteracao)
-	{
+			String observacao, String CEP, String data_alteracao) {
 		setCodigo(codigo);
 		setNome(nome);
 		setCPF(cpf);
@@ -91,9 +83,8 @@ public abstract class Pessoa implements Serializable {
 		setObservacao(observacao);
 		setCEP(CEP);
 		setData_alteracao(data_alteracao);
-		}
-	
-	
+	}
+
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -101,7 +92,7 @@ public abstract class Pessoa implements Serializable {
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
-	
+
 	public void setRG(String rg) {
 		this.rg = rg;
 	}
@@ -112,12 +103,12 @@ public abstract class Pessoa implements Serializable {
 
 	public String getData_alteracao() {
 		return data_alteracao;
-		
+
 	}
 
 	public void setData_alteracao(String data_alteracao) {
 		this.data_alteracao = data_alteracao;
-		
+
 	}
 
 	public String getEndereco() {
@@ -224,17 +215,6 @@ public abstract class Pessoa implements Serializable {
 		this.email = email;
 	}
 
-	 public static java.util.Date formataData(String data) throws ParseException {
-	        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-	        sdf.setLenient(false);
-	        return sdf.parse(data);	        
-	 }
-	 
-	 public static java.sql.Date getSqlDate(java.util.Date date) {
-	        return new java.sql.Date(date.getTime());
-	 }
-
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -271,7 +251,4 @@ public abstract class Pessoa implements Serializable {
 			return false;
 		return true;
 	}
-
-
-
 }

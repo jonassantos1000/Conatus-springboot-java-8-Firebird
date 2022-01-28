@@ -43,7 +43,7 @@ public class ClientResource {
 			@RequestParam(value="cpf", required=false) String cpf,
 			@RequestParam(value="rg", required=false) String rg, 
 			@RequestParam(value="email", required=false) String email,
-			@RequestParam(value="limite", required=false) String limite)
+			@RequestParam(value="limite", required=true) String limite)
 	{
 		
 		List<Client> list = service.findCustom(id, name, cpf, rg, email,limite);
