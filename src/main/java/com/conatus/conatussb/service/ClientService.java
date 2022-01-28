@@ -33,8 +33,31 @@ public class ClientService {
 	}
 	
 	public Client insert(Client obj) {
-		return repository.save(obj);
+		return repository.save(obj);	
+	}
+	
+	public Client update(Long id, Client obj) {
+		Client entity = repository.getOne(id);
+		updateData(entity,obj);
+		return repository.save(entity);
 		
+	}
+	
+	public void updateData(Client entity, Client obj) {
+		entity.setBairro(obj.getBairro());
+		entity.setCelular(obj.getCelular());
+		entity.setCEP(obj.getCEP());
+		entity.setComplemento(obj.getComplemento());;
+		entity.setCPF(obj.getCPF());
+		entity.setData_alteracao(obj.getData_alteracao());
+		entity.setEmail(obj.getEmail());
+		entity.setEndereco(obj.getEndereco());
+		entity.setNome(obj.getNome());
+		entity.setNotificaEmail(obj.getNotificaEmail());
+		entity.setNumero(obj.getNumero());
+		entity.setObservacao(obj.getObservacao());
+		entity.setRG(obj.getRG());
+		entity.setTelefone(obj.getTelefone());
 	}
 	
 }
