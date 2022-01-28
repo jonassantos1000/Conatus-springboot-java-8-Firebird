@@ -40,7 +40,6 @@ public class ClientService {
 		Client entity = repository.getOne(id);
 		updateData(entity,obj);
 		return repository.save(entity);
-		
 	}
 	
 	public void updateData(Client entity, Client obj) {
@@ -58,6 +57,10 @@ public class ClientService {
 		entity.setObservacao(obj.getObservacao());
 		entity.setRG(obj.getRG());
 		entity.setTelefone(obj.getTelefone());
+	}
+	
+	public void delete(Long id) {
+		repository.deleteById(id);
 	}
 	
 }
