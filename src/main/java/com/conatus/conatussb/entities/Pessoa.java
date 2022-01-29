@@ -1,10 +1,13 @@
 package com.conatus.conatussb.entities;
 
 import java.io.Serializable;
+import java.time.Instant;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @MappedSuperclass
 public abstract class Pessoa implements Serializable {
@@ -27,11 +30,13 @@ public abstract class Pessoa implements Serializable {
 	@Column(name = ("EMAIL"))
 	String email;
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="GMT")
 	@Column(name = ("DATA_CADASTRO"))
-	String data_cadastro;
-
+	Instant data_cadastro;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="GMT")
 	@Column(name = ("DATA_ALTERACAO"))
-	String data_alteracao;
+	Instant data_alteracao;
 
 	@Column(name = ("RG"))
 	String rg;
@@ -64,9 +69,9 @@ public abstract class Pessoa implements Serializable {
 
 	}
 
-	public Pessoa(Long codigo, String nome, String cpf, String RG, String celular, String email, String data,
+	public Pessoa(Long codigo, String nome, String cpf, String RG, String celular, String email, Instant data,
 			String endereco, String bairro, String numero, String complemento, String telefone, String notificawhats,
-			String observacao, String CEP, String data_alteracao) {
+			String observacao, String CEP, Instant data_alteracao) {
 		setCodigo(codigo);
 		setNome(nome);
 		setCPF(cpf);
@@ -101,12 +106,12 @@ public abstract class Pessoa implements Serializable {
 		return rg;
 	}
 
-	public String getData_alteracao() {
+	public Instant getData_alteracao() {
 		return data_alteracao;
 
 	}
 
-	public void setData_alteracao(String data_alteracao) {
+	public void setData_alteracao(Instant data_alteracao) {
 		this.data_alteracao = data_alteracao;
 
 	}
@@ -175,11 +180,11 @@ public abstract class Pessoa implements Serializable {
 		this.observacao = observacao;
 	}
 
-	public String getData_cadastro() {
+	public Instant getData_cadastro() {
 		return data_cadastro;
 	}
 
-	public void setData_cadastro(String data_cadastro) {
+	public void setData_cadastro(Instant data_cadastro) {
 		this.data_cadastro = data_cadastro;
 	}
 

@@ -42,6 +42,8 @@ public class ProductCustomRepository {
 				condicao = " and ";
 			}
 		}
+		
+		query+="ORDER BY COD_PRODUTOS";
 
 		Query q = em.createNativeQuery(query, Product.class);
 
@@ -50,7 +52,7 @@ public class ProductCustomRepository {
 		}
 
 		if (descricao != null) {
-			q.setParameter("descricao", "%" + descricao.toUpperCase() + "%");
+			q.setParameter("descricao", "%" + descricao + "%");
 		}
 		
 		if(inativo != null) {

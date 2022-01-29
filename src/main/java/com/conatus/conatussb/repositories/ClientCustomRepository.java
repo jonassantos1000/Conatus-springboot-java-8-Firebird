@@ -58,7 +58,7 @@ public class ClientCustomRepository {
 		}
 
 		if (nome != null) {
-			q.setParameter("nome", "%" + nome.toUpperCase() + "%");
+			q.setParameter("nome", "%" + nome + "%");
 		}
 
 		if (cpf != null) {
@@ -70,7 +70,7 @@ public class ClientCustomRepository {
 		}
 
 		if (email != null) {
-			q.setParameter("email", "%" + email.toUpperCase() + "%");
+			q.setParameter("email", "%" + email + "%");
 		}
 
 		return q.getResultList();

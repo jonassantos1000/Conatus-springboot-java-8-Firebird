@@ -1,11 +1,14 @@
 package com.conatus.conatussb.entities;
 
 import java.io.Serializable;
+import java.time.Instant;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="PRODUTOS")
@@ -16,7 +19,7 @@ public class Product implements Serializable {
 		
 	}
 	
-	public Product(Integer codigo, String descricao, Double preco, String data_cadastro, String data_alteracao,	String usuario, String observacao, String inativo) {
+	public Product(Long codigo, String descricao, Double preco, Instant data_cadastro, Instant data_alteracao,	String usuario, String observacao, String inativo) {
 		setCodigo(codigo);
 		setDescricao(descricao);
 		setPreco(preco);
@@ -29,7 +32,7 @@ public class Product implements Serializable {
 
 	@Id
 	@Column(name="COD_PRODUTOS")
-	private Integer codigo;
+	private Long codigo;
 	
 	@Column(name="DESCRICAO")
 	private String descricao;
@@ -37,11 +40,13 @@ public class Product implements Serializable {
 	@Column(name="PRECO")
 	private Double preco;
 	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="GMT")
 	@Column(name="DATA_CADASTRO")
-	private String data_cadastro;
+	private Instant data_cadastro;
 	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="GMT")
 	@Column(name="DATA_ALTERACAO")
-	private String data_alteracao;
+	private Instant data_alteracao;
 	
 	@Column(name="USUARIO")
 	private String usuario;// Para gravar o usuario que realizou o cadastro
@@ -53,11 +58,11 @@ public class Product implements Serializable {
 	private String observacao;
 
 	
-	public Integer getCodigo() {
+	public Long getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(Integer codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 
@@ -85,19 +90,19 @@ public class Product implements Serializable {
 		this.preco = preco;
 	}
 
-	public String getData_cadastro() {
+	public Instant getData_cadastro() {
 		return data_cadastro;
 	}
 
-	public void setData_cadastro(String data_cadastro) {
+	public void setData_cadastro(Instant data_cadastro) {
 		this.data_cadastro = data_cadastro;
 	}
 
-	public String getData_alteracao() {
+	public Instant getData_alteracao() {
 		return data_alteracao;
 	}
 
-	public void setData_alteracao(String data_alteracao) {
+	public void setData_alteracao(Instant data_alteracao) {
 		this.data_alteracao = data_alteracao;
 	}
 
@@ -147,6 +152,8 @@ public class Product implements Serializable {
 			return false;
 		return true;
 	}
+
+
 
 	
 }

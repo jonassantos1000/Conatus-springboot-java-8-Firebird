@@ -1,5 +1,6 @@
 package com.conatus.conatussb.resources;
 
+import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.conatus.conatussb.entities.Client;
 import com.conatus.conatussb.service.ClientService;
@@ -54,7 +56,8 @@ public class ClientResource {
 	@PostMapping
 	public ResponseEntity<Client> insert(@RequestBody Client obj){
 		service.insert(obj);
-		return ResponseEntity.ok().body(obj);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getCodigo()).toUri();
+		return ResponseEntity.created(uri).body(obj);
 	}
 	
 	@PutMapping(value="/{id}")
