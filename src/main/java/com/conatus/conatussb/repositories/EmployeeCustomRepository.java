@@ -8,22 +8,22 @@ import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
-import com.conatus.conatussb.entities.Client;
+import com.conatus.conatussb.entities.Employee;
 
 
 @Repository
 @Transactional
-public class ClientCustomRepository {
+public class EmployeeCustomRepository {
 
-	public ClientCustomRepository(EntityManager em) {
+	public EmployeeCustomRepository(EntityManager em) {
 		super();
 		this.em = em;
 	}
 
 	private final EntityManager em;
 
-	public List<Client> find(Long id, String nome, String cpf, String rg, String email, String limite) {
-		String query = "SELECT first " + limite + " * FROM CLIENTES ";
+	public List<Employee> find(Long id, String nome, String cpf, String rg, String email, String limite) {
+		String query = "SELECT first " + limite + " * FROM FUNCIONARIO ";
 		String condicao = "where ";
 
 		if (id != null) {
@@ -50,10 +50,10 @@ public class ClientCustomRepository {
 			query += condicao + "EMAIL LIKE (:email)";
 			condicao = "and ";
 		}
-		
-		query+="ORDER BY CODIGO";
 
-		Query q = em.createNativeQuery(query, Client.class);
+		query+="ORDER BY CODIGO";
+		
+		Query q = em.createNativeQuery(query, Employee.class);
 
 		if (id != null) {
 			q.setParameter("id", id);

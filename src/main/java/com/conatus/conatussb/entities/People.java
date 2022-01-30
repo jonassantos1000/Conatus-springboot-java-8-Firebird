@@ -10,7 +10,7 @@ import javax.persistence.MappedSuperclass;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @MappedSuperclass
-public abstract class Pessoa implements Serializable {
+public abstract class People implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -59,19 +59,15 @@ public abstract class Pessoa implements Serializable {
 	@Column(name = ("TELEFONE"))
 	String telefone;
 
-	@Column(name = ("NOTIFICA_WHATS"))
-	String notificaEmail;
-
 	@Column(name = ("OBSERVACAO"))
 	String observacao;
 
-	public Pessoa() {
+	public People() {
 
 	}
 
-	public Pessoa(Long codigo, String nome, String cpf, String RG, String celular, String email, Instant data,
-			String endereco, String bairro, String numero, String complemento, String telefone, String notificawhats,
-			String observacao, String CEP, Instant data_alteracao) {
+	public People(Long codigo, String nome, String cpf, String RG, String celular, String email, Instant data,
+			String endereco, String bairro, String numero, String complemento, String telefone, String observacao, String CEP, Instant data_alteracao) {
 		setCodigo(codigo);
 		setNome(nome);
 		setCPF(cpf);
@@ -84,7 +80,6 @@ public abstract class Pessoa implements Serializable {
 		setNumero(numero);
 		setComplemento(complemento);
 		setTelefone(telefone);
-		setNotificaEmail(notificawhats);
 		setObservacao(observacao);
 		setCEP(CEP);
 		setData_alteracao(data_alteracao);
@@ -164,14 +159,6 @@ public abstract class Pessoa implements Serializable {
 		this.telefone = telefone;
 	}
 
-	public String getNotificaEmail() {
-		return notificaEmail;
-	}
-
-	public void setNotificaEmail(String notificaEmail) {
-		this.notificaEmail = notificaEmail;
-	}
-
 	public String getObservacao() {
 		return observacao;
 	}
@@ -238,7 +225,7 @@ public abstract class Pessoa implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Pessoa other = (Pessoa) obj;
+		People other = (People) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
