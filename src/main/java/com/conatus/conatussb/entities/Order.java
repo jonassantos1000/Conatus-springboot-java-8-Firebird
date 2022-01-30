@@ -1,12 +1,15 @@
 package com.conatus.conatussb.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -32,6 +35,9 @@ public class Order implements Serializable {
     @ManyToOne
     @JoinColumn(name="COD_FUNCIONARIO")
     private Employee employee;
+    
+	@OneToMany(mappedBy = "id.order")
+	private Set<OrderItem> items = new HashSet<>();
 
 	public Order() {
     	
@@ -79,7 +85,10 @@ public class Order implements Serializable {
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
-
+	
+	public Set<OrderItem> getItems() {
+		return items;
+	}
 
 	@Override
 	public int hashCode() {
