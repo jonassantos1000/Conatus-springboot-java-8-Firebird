@@ -20,7 +20,7 @@ public class Order implements Serializable {
 	
 	@Id
 	@Column(name="COD_VENDA")
-	private Long codigo ;
+	private Long codigo;
 	
 	@Column(name="DT_VENDA")
     private String dataCadastro;
@@ -38,16 +38,21 @@ public class Order implements Serializable {
     
 	@OneToMany(mappedBy = "id.order")
 	private Set<OrderItem> items = new HashSet<>();
+	
+	
+	@Column(name="VL_TOTAL_VENDA")
+	private Double valorTotal;
 
 	public Order() {
     	
     }
-    
-	public Order(Long codigo, String dataCadastro, String dataAlteracao) {
+ 
+	public Order(Long codigo, String dataCadastro, String dataAlteracao, Double valorTotal) {
 		super();
 		this.codigo = codigo;
 		this.dataCadastro = dataCadastro;
 		this.dataAlteracao = dataAlteracao;
+		this.valorTotal = valorTotal;
 	}
 	
 	public Long getCodigo() {
@@ -88,6 +93,14 @@ public class Order implements Serializable {
 	
 	public Set<OrderItem> getItems() {
 		return items;
+	}
+		
+	public Double getValorTotal() {
+		return valorTotal;
+	}
+
+	public void setValorTotal(Double valorTotal) {
+		this.valorTotal = valorTotal;
 	}
 
 	@Override
