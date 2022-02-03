@@ -37,12 +37,12 @@ public class ClientCustomRepository {
 		}
 
 		if (cpf != null) {
-			query += condicao + "CPF LIKE(:cpf)";
+			query += condicao + "CPF LIKE (:cpf)";
 			condicao = "and ";
 		}
 
 		if (rg != null) {
-			query += condicao + "RG LIKE(:rg)";
+			query += condicao + "RG LIKE (:rg)";
 			condicao = "and ";
 		}
 

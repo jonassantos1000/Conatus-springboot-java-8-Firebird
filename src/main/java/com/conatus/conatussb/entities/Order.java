@@ -1,6 +1,7 @@
 package com.conatus.conatussb.entities;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name="VENDAS")
 public class Order implements Serializable {
@@ -23,11 +26,13 @@ public class Order implements Serializable {
 	@Column(name="COD_VENDA")
 	private Long codigo;
 	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="GMT")
 	@Column(name="DT_VENDA")
-    private String dataCadastro;
+    private Instant dataCadastro;
 	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="GMT")
 	@Column(name="DT_ALTERACAO")
-    private String dataAlteracao;
+    private Instant dataAlteracao;
     
     @ManyToOne
     @JoinColumn(name="COD_CLIENTE")
@@ -48,14 +53,14 @@ public class Order implements Serializable {
     	
     }
  
-	public Order(Long codigo, String dataCadastro, String dataAlteracao, Double valorTotal) {
+	public Order(Long codigo, Instant dataCadastro, Instant dataAlteracao, Double valorTotal) {
 		super();
 		this.codigo = codigo;
 		this.dataCadastro = dataCadastro;
 		this.dataAlteracao = dataAlteracao;
 		this.valorTotal = valorTotal;
 	}
-	
+
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -63,16 +68,16 @@ public class Order implements Serializable {
 		this.codigo = codigo;
 	}
 	
-	public String getDataCadastro() {
+	public Instant getDataCadastro() {
 		return dataCadastro;
 	}
-	public void setDataCadastro(String dataCadastro) {
+	public void setDataCadastro(Instant dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
-	public String getDataAlteracao() {
+	public Instant getDataAlteracao() {
 		return dataAlteracao;
 	}
-	public void setDataAlteracao(String dataAlteracao) {
+	public void setDataAlteracao(Instant dataAlteracao) {
 		this.dataAlteracao = dataAlteracao;
 	}
 	

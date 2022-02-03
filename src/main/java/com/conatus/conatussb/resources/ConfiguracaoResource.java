@@ -1,0 +1,35 @@
+package com.conatus.conatussb.resources;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
+import com.conatus.conatussb.entities.Configuracao;
+import com.conatus.conatussb.service.ConfiguracaoService;
+
+@RestController
+@RequestMapping(value = "/settings")
+
+public class ConfiguracaoResource {
+	
+	@Autowired
+	ConfiguracaoService service;
+	
+	@GetMapping()
+	public ResponseEntity<Configuracao> findById(){
+		Configuracao config = service.find();
+		return ResponseEntity.ok().body(config);
+	}
+	
+	@PutMapping()
+	public ResponseEntity<Configuracao> update(@RequestBody Configuracao obj){
+		obj=service.update(obj);
+		return ResponseEntity.ok().body(obj);
+	}
+}
