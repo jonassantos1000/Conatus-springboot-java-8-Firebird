@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-import com.conatus.conatussb.entities.Configuracao;
+import com.conatus.conatussb.entities.Setting;
 import com.conatus.conatussb.service.ConfiguracaoService;
 
 @RestController
@@ -22,13 +22,13 @@ public class ConfiguracaoResource {
 	ConfiguracaoService service;
 	
 	@GetMapping()
-	public ResponseEntity<Configuracao> findById(){
-		Configuracao config = service.find();
+	public ResponseEntity<Setting> findById(){
+		Setting config = service.find();
 		return ResponseEntity.ok().body(config);
 	}
 	
 	@PutMapping()
-	public ResponseEntity<Configuracao> update(@RequestBody Configuracao obj){
+	public ResponseEntity<Setting> update(@RequestBody Setting obj){
 		obj=service.update(obj);
 		return ResponseEntity.ok().body(obj);
 	}

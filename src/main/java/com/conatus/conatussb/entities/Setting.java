@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="CONFIGURACOES")
-public class Configuracao implements Serializable {
+public class Setting implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -54,11 +54,11 @@ public class Configuracao implements Serializable {
 	@Column(name="DT_CONFIGURACAO")
 	private Instant data;
 	
-    public Configuracao() {
+    public Setting() {
     	
     }
 
-	public Configuracao(String razaoSocial, String responsavelLegal, Long codigo, String cnpj, String email,
+	public Setting(String razaoSocial, String responsavelLegal, Long codigo, String cnpj, String email,
 			String senha, String smtp, String portaSMTP, String sSL, String tLS, String mensagemPadrao, Instant data) {
 		super();
 		this.razaoSocial = razaoSocial;
@@ -170,7 +170,7 @@ public class Configuracao implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Configuracao other = (Configuracao) obj;
+		Setting other = (Setting) obj;
 		if (cnpj == null) {
 			if (other.cnpj != null)
 				return false;
