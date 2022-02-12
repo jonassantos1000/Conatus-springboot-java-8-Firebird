@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.conatus.conatussb.entities.Order;
-import com.conatus.conatussb.entities.OrderItem;
 import com.conatus.conatussb.repositories.OrderCustomRepository;
 import com.conatus.conatussb.repositories.OrderRepository;
 

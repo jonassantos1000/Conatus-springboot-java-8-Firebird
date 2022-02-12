@@ -26,17 +26,17 @@ public class ProductCustomRepository {
 		
 		String condicao = "where ";
 
-		if (id != null) {
+		if (id != null && id != 0) {
 			query += condicao + "COD_PRODUTOS LIKE (:id)";
 			condicao = " and ";
 		}
 
-		if (descricao != null) {
+		if (descricao != null && descricao != "") {
 			query += condicao + "DESCRICAO LIKE (:descricao)";
 			condicao = " and ";
 		}
 
-		if(inativo != null) {
+		if(inativo != null && inativo != "") {
 			if (inativo.equals("F")) {
 				query += condicao + "INATIVO = (:inativo)";
 				condicao = " and ";

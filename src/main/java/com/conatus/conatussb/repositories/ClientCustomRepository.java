@@ -26,27 +26,27 @@ public class ClientCustomRepository {
 		String query = "SELECT first " + limite + " * FROM CLIENTES ";
 		String condicao = "where ";
 
-		if (id != null) {
+		if (id != null && id != 0) {
 			query += condicao + "CODIGO LIKE (:id)";
 			condicao = "and ";
 		}
 
-		if (nome != null) {
+		if (nome != null && nome != "") {
 			query += condicao + "NOME LIKE (:nome)";
 			condicao = "and ";
 		}
 
-		if (cpf != null) {
+		if (cpf != null && cpf != "") {
 			query += condicao + "CPF LIKE (:cpf)";
 			condicao = "and ";
 		}
 
-		if (rg != null) {
+		if (rg != null && rg != "") {
 			query += condicao + "RG LIKE (:rg)";
 			condicao = "and ";
 		}
 
-		if (email != null) {
+		if (email != null && email != "") {
 			query += condicao + "EMAIL LIKE (:email)";
 			condicao = "and ";
 		}
@@ -55,23 +55,23 @@ public class ClientCustomRepository {
 
 		Query q = em.createNativeQuery(query, Client.class);
 
-		if (id != null) {
+		if (id != null && id != 0) {
 			q.setParameter("id", id);
 		}
 
-		if (nome != null) {
+		if (nome != null && nome != "") {
 			q.setParameter("nome", "%" + nome + "%");
 		}
 
-		if (cpf != null) {
+		if (cpf != null && cpf != "") {
 			q.setParameter("cpf", "%" + cpf + "%");
 		}
 
-		if (rg != null) {
+		if (rg != null && rg != "") {
 			q.setParameter("rg", "%" + rg + "%");
 		}
 
-		if (email != null) {
+		if (email != null && email != "") {
 			q.setParameter("email", "%" + email + "%");
 		}
 
