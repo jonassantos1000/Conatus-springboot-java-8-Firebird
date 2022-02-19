@@ -22,7 +22,9 @@ public class OrderCustomRepository {
 	}
 
 	private final EntityManager em;
-
+	
+	
+	
 	@Autowired
 	OrderRepository repo;
 	
@@ -43,37 +45,37 @@ public class OrderCustomRepository {
 			String condicao = "where ";
 			
             //codigo_venda
-            if (codOrder != null && codOrder != 0) {
+            if (codOrder != null) {
     			query += condicao + "m.COD_VENDA LIKE (:codOrder)";
     			condicao = "and ";
     		}
             
             //codigo_cliente
-            if (codClient != null && codClient != 0) {
+            if (codClient != null) {
     			query += condicao + "m.COD_CLIENTE LIKE (:codClient)";
     			condicao = "and ";
     		}
             
             //Nome_cliente
-            if (nameClient != null && nameClient != "" ) {
+            if (nameClient != null) {
     			query += condicao + "m.NOMECLIENTE LIKE (:nameClient)";
     			condicao = "and ";
     		}
             
             //cpf_cliente
-            if (cpfClient != null && cpfClient != "") {
+            if (cpfClient != null) {
     			query += condicao + "m.CPFCLIENTE LIKE (:cpfClient)";
     			condicao = "and ";
     		}
             
             //rg_cliente
-            if (rgClient != null && rgClient != "") {
+            if (rgClient != null) {
     			query += condicao + "m.RGCLIENTE LIKE (:rgClient)";
     			condicao = "and ";
     		}
 
             //rg_cliente
-            if (nameEmployee != null && nameEmployee != "") {
+            if (nameEmployee != null) {
     			query += condicao + "m.NOMEFUNCIONARIO LIKE (:nameEmployee)";
     			condicao = "and ";
     		}         
@@ -96,32 +98,32 @@ public class OrderCustomRepository {
             Query q = em.createNativeQuery(query, Order.class);
             		
             //codigo_venda
-            if (codOrder != null && codOrder != 0) {
+            if (codOrder != null) {
             	q.setParameter("codOrder", codOrder);
     		}
             
             //codigo_cliente
-            if (codClient != null  && codClient != 0) {
+            if (codClient != null) {
             	q.setParameter("codClient", codClient);
     		}
             
             //Nome_cliente
-            if (nameClient != null  && nameClient != "") {
+            if (nameClient != null) {
             	q.setParameter("nameClient", "%"+nameClient+"%");
     		}
             
             //cpf_cliente
-            if (cpfClient != null  && cpfClient != "") {
+            if (cpfClient != null) {
             	q.setParameter("cpfClient", cpfClient);
     		}
             
             //rg_cliente
-            if (rgClient != null  && rgClient != "") {
+            if (rgClient != null) {
             	q.setParameter("rgClient", rgClient);
     		}
 
             //rg_cliente
-            if (nameEmployee != null && nameEmployee != "") {
+            if (nameEmployee != null) {
             	q.setParameter("nameEmployee", "%"+nameEmployee+"%");
     		}         
             
